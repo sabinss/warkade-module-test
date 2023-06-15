@@ -1,0 +1,13 @@
+version: "3.1"
+
+services:
+  warcade-production:
+    container_name: ${CONTAINER_NAME}
+    hostname: warcade-server
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: always
+    user: root:root
+    ports:
+      - ${PORT}:${PORT}
