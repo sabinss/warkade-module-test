@@ -9,9 +9,12 @@ import '../src/assets/styles/index.scss';
 
 // wallets
 import { PetraWallet } from 'petra-plugin-wallet-adapter';
+import { FewchaWallet } from 'fewcha-plugin-wallet-adapter';
 import { BloctoWallet } from '@blocto/aptos-wallet-adapter-plugin';
 import { MartianWallet } from '@martianwallet/aptos-wallet-adapter';
 import { WalletCore, NetworkName } from '@aptos-labs/wallet-adapter-core';
+// import { PontemWalletAdapter } from '@pontem/aptos-wallet-adapter';
+import { SpikaWallet } from '@spika/aptos-plugin';
 
 import { AptosWalletAdapterProvider } from '@aptos-labs/wallet-adapter-react';
 // import ErrorBoundary from './components/Errorboundary';
@@ -26,12 +29,14 @@ const root = ReactDOM.createRoot(
 );
 
 const wallets = [
+  new FewchaWallet(),
   new PetraWallet(),
   new BloctoWallet({
     network: network,
     bloctoAppId: '84503da4-7d0f-4ced-b004-ecd81bfc333b',
   }),
   new MartianWallet(),
+  new SpikaWallet(),
 ];
 
 export const aptosWallet = new WalletCore(wallets);
@@ -45,7 +50,6 @@ function ErrorFallback({ error, resetErrorBoundary }: any) {
     </div>
   );
 }
-
 root.render(
   <React.StrictMode>
     <ErrorBoundary FallbackComponent={ErrorFallback}>

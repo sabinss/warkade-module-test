@@ -7,14 +7,23 @@ import {
   WalletName,
   NetworkName,
 } from '@aptos-labs/wallet-adapter-core';
-import { MartianWalletName } from '@martianwallet/aptos-wallet-adapter';
-import { PetraWalletName } from 'petra-plugin-wallet-adapter';
-import { BloctoWalletName } from '@blocto/aptos-wallet-adapter-plugin';
+import { FewchaWallet, FewchaWalletName } from 'fewcha-plugin-wallet-adapter';
 import { Context as AuthContext } from '../../context';
 // wallets
-import { PetraWallet } from 'petra-plugin-wallet-adapter';
-import { BloctoWallet } from '@blocto/aptos-wallet-adapter-plugin';
-import { MartianWallet } from '@martianwallet/aptos-wallet-adapter';
+import { PetraWallet, PetraWalletName } from 'petra-plugin-wallet-adapter';
+import {
+  BloctoWallet,
+  BloctoWalletName,
+} from '@blocto/aptos-wallet-adapter-plugin';
+import {
+  MartianWallet,
+  MartianWalletName,
+} from '@martianwallet/aptos-wallet-adapter';
+import { SpikaWalletName } from '@spika/aptos-plugin';
+// import {
+//   AptosWalletName,
+//   useWallet as manahipoUseWallet,
+// } from '@manahippo/aptos-wallet-adapter';
 
 interface IConnectWallet {
   showModal: boolean;
@@ -25,9 +34,16 @@ enum AllowededWallets {
   petra = 'Petra',
   blockto = 'Blockto',
   martian = 'Martian',
+  fewcha = 'Fewcha',
+  spika = 'Spika',
 }
 
 export const ConnectWallet = ({ handleClose, showModal }: IConnectWallet) => {
+  // const {
+  //   connect: manahipoConnect,
+  //   disconnect: manahipoDisconnect,
+  //   connected,
+  // } = useWallet();
   const { state, connetAptosWallet, setConnectedWalletName, setLoading } =
     useContext<any>(AuthContext);
   const [selectedWallet, setSelectedWallet] = useState('');
@@ -46,6 +62,7 @@ export const ConnectWallet = ({ handleClose, showModal }: IConnectWallet) => {
   const aptosWalletNetwork = new WalletCore(aptosWallet);
 
   useEffect(() => {
+    console.log('SpikaWalletName', SpikaWalletName);
     if (account) {
       connetAptosWallet(account, () => {
         setLoading(false);
@@ -74,7 +91,12 @@ export const ConnectWallet = ({ handleClose, showModal }: IConnectWallet) => {
         openSelectedWallet = MartianWalletName;
       } else if (AllowededWallets.blockto === walletName) {
         openSelectedWallet = BloctoWalletName;
+      } else if (AllowededWallets.fewcha === walletName) {
+        openSelectedWallet = FewchaWalletName;
+      } else if (AllowededWallets.spika === walletName) {
+        openSelectedWallet = SpikaWalletName;
       }
+
       connect(openSelectedWallet);
       // const wallet = new WalletCore(wallets);
       connetAptosWallet(account, () => {
@@ -106,7 +128,10 @@ export const ConnectWallet = ({ handleClose, showModal }: IConnectWallet) => {
           </div>
         </div>
 
-        <div className='wallet-list'>
+        <div
+          className='wallet-list'
+          style={{ overflowY: 'scroll', height: '400' }}
+        >
           <div
             className={`wallet-list-item d-flex  justify-content-start  align-items-center ${
               selectedWallet === AllowededWallets.petra
@@ -154,6 +179,38 @@ export const ConnectWallet = ({ handleClose, showModal }: IConnectWallet) => {
 
             <span className='text-color wallet-text'>
               {AllowededWallets.martian}
+            </span>
+          </div>
+          <div
+            className={`wallet-list-item d-flex  justify-content-start  align-items-center ${
+              selectedWallet === AllowededWallets.fewcha
+                ? 'wallet-list-item-active'
+                : ''
+            }`}
+            onClick={() => handleSelectWallet(AllowededWallets.fewcha)}
+          >
+            <img
+              className='wallet-img'
+              src={require('../../assets/images/wallet2.png')}
+            />
+            <span className='text-color wallet-text'>
+              {AllowededWallets.fewcha}
+            </span>
+          </div>
+          <div
+            className={`wallet-list-item d-flex  justify-content-start  align-items-center ${
+              selectedWallet === AllowededWallets.spika
+                ? 'wallet-list-item-active'
+                : ''
+            }`}
+            onClick={() => handleSelectWallet(AllowededWallets.spika)}
+          >
+            <img
+              className='wallet-img'
+              src={require('../../assets/images/wallet2.png')}
+            />
+            <span className='text-color wallet-text'>
+              {AllowededWallets.spika}
             </span>
           </div>
         </div>
