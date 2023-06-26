@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import { Context as AuthContext } from '../../context/authContext';
 import { ConnectWallet } from '../modal/ConnectWallet';
 import { CollectionLoader } from '../common/CollectionLoader';
-import { useWallet } from '@aptos-labs/wallet-adapter-react';
+// import { useWallet } from '@aptos-labs/wallet-adapter-react';
 import { ReactComponent as HeartNil } from '../../assets/images/lifelinesvg/0.svg';
 import { ReactComponent as HeartLow } from '../../assets/images/lifelinesvg/one.svg';
 import { ReactComponent as HeartMedium } from '../../assets/images/lifelinesvg/2.svg';
@@ -41,7 +41,7 @@ export const LandingMain = () => {
     setMintModal(true);
   };
 
-  const { signAndSubmitTransaction } = useWallet();
+  // const { signAndSubmitTransaction } = useWallet();
   useEffect(() => {}, [walletAccountInfo?.address, totalMinted]);
 
   const handleDeposit = async () => {
@@ -54,7 +54,7 @@ export const LandingMain = () => {
     };
 
     try {
-      await signAndSubmitTransaction(deposit_payload);
+      // await signAndSubmitTransaction(deposit_payload);
       fetchTotalMint(walletAccountInfo?.address);
       fetchRemainingMint(walletAccountInfo?.address, () => {
         setBalanceModal(false);
@@ -192,40 +192,37 @@ export const LandingMain = () => {
                     </div>
                   </div>
                   <div className='below-bottom-content d-lg-flex align-align-items-start'>
-                  
                     <div className='bottom-left  d-inline-block'>
-                    <Link to={'/collections'}>
-                      <div className='icon-grp-text'>
-                        <ul className='list-unstyled d-flex icon-grp'>
-                          <li>
-                            <div className='icon-holder'>
-                              <img
-                                src={require('../../assets/images/WarcadiaCoinAnimation.gif')}
-                                alt=''
-                              />
-                            </div>
-                          </li>
-                          <li>
-                            <div className='icon-holder'>
-                              <img
-                                src={require('../../assets/images/WarcadiaCoinAnimation.gif')}
-                                alt=''
-                              />
-                            </div>
-                          </li>
-                          <li>
-                            <div className='icon-holder'>
-                              <img
-                                src={require('../../assets/images/WarcadiaCoinAnimation.gif')}
-                                alt=''
-                              />
-                            </div>
-                          </li>
-                        </ul>
-                        <h6>
-                          My Collection
-                        </h6>
-                      </div>
+                      <Link to={'/collections'}>
+                        <div className='icon-grp-text'>
+                          <ul className='list-unstyled d-flex icon-grp'>
+                            <li>
+                              <div className='icon-holder'>
+                                <img
+                                  src={require('../../assets/images/WarcadiaCoinAnimation.gif')}
+                                  alt=''
+                                />
+                              </div>
+                            </li>
+                            <li>
+                              <div className='icon-holder'>
+                                <img
+                                  src={require('../../assets/images/WarcadiaCoinAnimation.gif')}
+                                  alt=''
+                                />
+                              </div>
+                            </li>
+                            <li>
+                              <div className='icon-holder'>
+                                <img
+                                  src={require('../../assets/images/WarcadiaCoinAnimation.gif')}
+                                  alt=''
+                                />
+                              </div>
+                            </li>
+                          </ul>
+                          <h6>My Collection</h6>
+                        </div>
                       </Link>
                     </div>
 

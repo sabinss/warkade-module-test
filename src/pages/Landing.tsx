@@ -3,25 +3,25 @@ import { Header, Footer } from '../components';
 import { LandingMain } from '../components/main/landingMain';
 import { ConnectWallet } from '../components/modal/ConnectWallet';
 import { Context as AuthContext } from '../context/authContext';
-import { useWallet } from '@aptos-labs/wallet-adapter-react';
+// import { useWallet } from '@aptos-labs/wallet-adapter-react';
 import { CollectionLoader } from '../components/common/CollectionLoader';
 
 export const Landing = () => {
   const [connectWalletModal, setConnectWalletModal] = useState(false);
 
-  const {
-    connect,
-    account,
-    network,
-    connected,
-    disconnect,
-    wallet,
-    wallets,
+  // const {
+  //   connect,
+  //   account,
+  //   network,
+  //   connected,
+  //   disconnect,
+  //   wallet,
+  //   wallets,
 
-    signAndSubmitTransaction,
-    signTransaction,
-    signMessage,
-  } = useWallet();
+  //   signAndSubmitTransaction,
+  //   signTransaction,
+  //   signMessage,
+  // } = useWallet();
   const {
     state: { walletAccountInfo, walletConnetLoading },
     connetAptosWallet,
@@ -29,13 +29,13 @@ export const Landing = () => {
   } = useContext<any>(AuthContext);
 
   const updateWalletAccount = () => {
-    connetAptosWallet(account);
+    // connetAptosWallet(account);
   };
 
-  useEffect(() => {
-    setLoading(true);
-    updateWalletAccount();
-  }, [account]);
+  // useEffect(() => {
+  //   setLoading(true);
+  //   updateWalletAccount();
+  // }, [account]);
 
   return (
     <div id='landing'>
@@ -51,12 +51,12 @@ export const Landing = () => {
 
       <LandingMain />
       <Footer />
-      <ConnectWallet
+      {/* <ConnectWallet
         showModal={connectWalletModal}
         handleClose={() => {
           setConnectWalletModal(false);
         }}
-      />
+      /> */}
       {/* <DisconnectWallet
         showModal={connectWalletModal}
         connectedWallet={WalletNames.petra}
