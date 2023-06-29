@@ -50,15 +50,17 @@ function ErrorFallback({ error, resetErrorBoundary }: any) {
     </div>
   );
 }
-root.render(
+const Main = () => {
   <React.StrictMode>
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       {/* <AptosWalletAdapterProvider plugins={wallets} autoConnect={true}> */}
-        <WarKade />
-        <ToastContainer />
+      <WarKade />
+      <ToastContainer />
       {/* </AptosWalletAdapterProvider> */}
     </ErrorBoundary>
-  </React.StrictMode>
-);
+  </React.StrictMode>;
+};
+
+export default Main;
 
 reportWebVitals();

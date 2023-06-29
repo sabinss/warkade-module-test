@@ -34,8 +34,8 @@ enum AllowededWallets {
   petra = 'Petra',
   blockto = 'Blockto',
   martian = 'Martian',
-  fewcha = 'Fewcha',
-  spika = 'Spika',
+  // fewcha = 'Fewcha',
+  // spika = 'Spika',
 }
 
 export const ConnectWallet = ({ handleClose, showModal }: IConnectWallet) => {
@@ -91,11 +91,12 @@ export const ConnectWallet = ({ handleClose, showModal }: IConnectWallet) => {
         openSelectedWallet = MartianWalletName;
       } else if (AllowededWallets.blockto === walletName) {
         openSelectedWallet = BloctoWalletName;
-      } else if (AllowededWallets.fewcha === walletName) {
-        openSelectedWallet = FewchaWalletName;
-      } else if (AllowededWallets.spika === walletName) {
-        openSelectedWallet = SpikaWalletName;
       }
+      // else if (AllowededWallets.fewcha === walletName) {
+      //   openSelectedWallet = FewchaWalletName;
+      // } else if (AllowededWallets.spika === walletName) {
+      //   openSelectedWallet = SpikaWalletName;
+      // }
 
       connect(openSelectedWallet);
       // const wallet = new WalletCore(wallets);
@@ -181,7 +182,7 @@ export const ConnectWallet = ({ handleClose, showModal }: IConnectWallet) => {
               {AllowededWallets.martian}
             </span>
           </div>
-          <div
+          {/* <div
             className={`wallet-list-item d-flex  justify-content-start  align-items-center ${
               selectedWallet === AllowededWallets.fewcha
                 ? 'wallet-list-item-active'
@@ -196,8 +197,8 @@ export const ConnectWallet = ({ handleClose, showModal }: IConnectWallet) => {
             <span className='text-color wallet-text'>
               {AllowededWallets.fewcha}
             </span>
-          </div>
-          <div
+          </div> */}
+          {/* <div
             className={`wallet-list-item d-flex  justify-content-start  align-items-center ${
               selectedWallet === AllowededWallets.spika
                 ? 'wallet-list-item-active'
@@ -212,7 +213,7 @@ export const ConnectWallet = ({ handleClose, showModal }: IConnectWallet) => {
             <span className='text-color wallet-text'>
               {AllowededWallets.spika}
             </span>
-          </div>
+          </div> */}
         </div>
         <div
           className='d-flex justify-content-center mt-10'
